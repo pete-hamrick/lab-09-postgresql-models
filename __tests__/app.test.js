@@ -4,11 +4,11 @@ import request from 'supertest';
 import app from '../lib/app.js';
 
 describe('demo routes', () => {
-  beforeEach(() => {
-    return setup(pool);
-  });
+    beforeEach(() => {
+        return setup(pool);
+    });
 
-  afterAll(() => {
-    pool.end();
-  });
+    afterAll(() => {
+        pool.end();
+    });
 });
