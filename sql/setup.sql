@@ -8,7 +8,7 @@ CREATE TABLE films (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
     release_date TEXT NOT NULL,
-    episode_id TEXT NOT NULL,
+    episode_id TEXT,
     director TEXT NOT NULL
 );
 
