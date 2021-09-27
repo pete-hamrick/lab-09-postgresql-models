@@ -8,11 +8,12 @@ describe('film routes', () => {
         return setup(pool);
     });
 
-    it('should get the first star wars film and show the title, release date, episode id, and director', () => {
+    it('should get a random star wars film', () => {
         return request(app)
-            .get('/api/films/1')
+            .get('/api/films/random')
             .then((res) => {
                 expect(res.body).toEqual({
+                    id: expect.any(Number),
                     title: expect.any(String),
                     releaseDate: expect.any(String),
                     episodeId: expect.any(String),
