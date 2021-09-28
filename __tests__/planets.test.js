@@ -74,6 +74,29 @@ describe('Planet routes', () => {
             });
     });
 
+    it('should get all planets', () => {
+        return request(app)
+            .get('/api/planets')
+            .then((res) => {
+                expect(res.body).toEqual([
+                    {
+                        id: 1,
+                        name: 'Earth',
+                        climate: 'worsening',
+                        terrain: 'mostly water',
+                        population: 'billions',
+                    },
+                    {
+                        id: 2,
+                        name: 'Jedha',
+                        climate: 'cold',
+                        terrain: 'deserts, mesas, magma seas',
+                        population: '11.3 million',
+                    },
+                ]);
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
