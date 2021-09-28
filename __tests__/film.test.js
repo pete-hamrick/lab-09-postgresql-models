@@ -104,25 +104,3 @@ describe('film routes', () => {
         pool.end();
     });
 });
-
-describe('Character routes', () => {
-    beforeEach(() => {
-        return setup(pool);
-    });
-
-    it('should get, store and return a random star wars character', () => {
-        return request(app)
-            .get('/api/characters/random')
-            .then((res) => {
-                expect(res.body).toEqual({
-                    id: 1,
-                    name: expect.any(String),
-                    height: expect.any(String),
-                });
-            });
-    });
-
-    afterAll(() => {
-        pool.end();
-    });
-});
