@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS films;
--- DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS characters;
 -- DROP TABLE IF EXISTS planets;
 -- DROP TABLE IF EXISTS starships;
 -- DROP TABLE IF EXISTS vehicles;
@@ -12,12 +12,11 @@ CREATE TABLE films (
     director TEXT NOT NULL
 );
 
--- CREATE TABLE characters (
---     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     name TEXT NOT NULL,
---     height TEXT NOT NULL,
---     homeworld TEXT NOT NULL    
--- );
+CREATE TABLE characters (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    height TEXT NOT NULL,  
+);
 
 -- CREATE TABLE planets (
 --     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
