@@ -117,6 +117,20 @@ describe('Planet routes', () => {
             });
     });
 
+    it('should delete a planet by id and return the deleted planet', () => {
+        return request(app)
+            .delete('/api/planets/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    name: 'Earth',
+                    climate: 'worsening',
+                    terrain: 'mostly water',
+                    population: 'billions',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
