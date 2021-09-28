@@ -96,6 +96,18 @@ describe('Character routes', () => {
             });
     });
 
+    it('should delete a character', () => {
+        return request(app)
+            .delete('/api/characters/2')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 2,
+                    name: 'Jyn Erso',
+                    height: '160',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
