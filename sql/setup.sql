@@ -15,7 +15,7 @@ CREATE TABLE films (
 CREATE TABLE characters (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    height TEXT NOT NULL,  
+    height TEXT NOT NULL
 );
 
 -- CREATE TABLE planets (
