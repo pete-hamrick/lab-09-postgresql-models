@@ -28,15 +28,16 @@ describe('film routes', () => {
             .send({
                 title: 'Rogue One',
                 releaseDate: '2016-12-16',
+                episodeId: null,
                 director: 'Gareth Edwards',
             })
             .then((res) => {
                 expect(res.body).toEqual({
-                    id: expect.any(Number),
-                    title: expect.any(String),
-                    releaseDate: expect.any(String),
+                    id: 1,
+                    title: 'Rogue One',
+                    releaseDate: '2016-12-16',
                     episodeId: null,
-                    director: expect.any(String),
+                    director: 'Gareth Edwards',
                 });
             });
     });
