@@ -65,7 +65,7 @@ describe('Character routes', () => {
         return request(app)
             .get('/api/characters')
             .then((res) => {
-                expect(res.body).toEqual(
+                expect(res.body).toEqual([
                     {
                         id: 1,
                         name: 'Babu Frik',
@@ -75,8 +75,8 @@ describe('Character routes', () => {
                         id: 2,
                         name: 'Jyn Erso',
                         height: '160',
-                    }
-                );
+                    },
+                ]);
             });
     });
 
