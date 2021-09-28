@@ -20,6 +20,22 @@ describe('Character routes', () => {
             });
     });
 
+    it('should let you add your own star wars character', () => {
+        return request(app)
+            .post('/api/characters')
+            .send({
+                name: 'Babu Frik',
+                height: '22',
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    name: 'Babu Frik',
+                    height: '22',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
