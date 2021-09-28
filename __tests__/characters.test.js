@@ -14,13 +14,19 @@ describe('Character routes', () => {
             height: '22',
         });
     });
+    beforeEach(() => {
+        return request(app).post('/api/characters').send({
+            name: 'Jyn Erso',
+            height: '160',
+        });
+    });
 
     it('should get, store and return a random star wars character', () => {
         return request(app)
             .get('/api/characters/random')
             .then((res) => {
                 expect(res.body).toEqual({
-                    id: 2,
+                    id: 3,
                     name: expect.any(String),
                     height: expect.any(String),
                 });
@@ -36,7 +42,7 @@ describe('Character routes', () => {
             })
             .then((res) => {
                 expect(res.body).toEqual({
-                    id: 2,
+                    id: 3,
                     name: 'Babu Frik',
                     height: '22',
                 });
@@ -52,6 +58,25 @@ describe('Character routes', () => {
                     name: 'Babu Frik',
                     height: '22',
                 });
+            });
+    });
+
+    it('should get all characters', () => {
+        return request(app)
+            .get('/api/characters')
+            .then((res) => {
+                expect(res.body).toEqual(
+                    {
+                        id: 1,
+                        name: 'Babu Frik',
+                        height: '22',
+                    },
+                    {
+                        id: 2,
+                        name: 'Jyn Erso',
+                        height: '160',
+                    }
+                );
             });
     });
 
