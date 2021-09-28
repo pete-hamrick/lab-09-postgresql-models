@@ -97,6 +97,26 @@ describe('Planet routes', () => {
             });
     });
 
+    it('should update a planet by id', () => {
+        return request(app)
+            .put('/api/planets/1')
+            .send({
+                name: 'Earth',
+                climate: 'changing',
+                terrain: 'water, mountains, deserts, forests',
+                population: '9 billion',
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    name: 'Earth',
+                    climate: 'changing',
+                    terrain: 'water, mountains, deserts, forests',
+                    population: '9 billion',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
