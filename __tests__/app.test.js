@@ -86,6 +86,20 @@ describe('film routes', () => {
             });
     });
 
+    it('should delete a film by id and return the deleted film', () => {
+        return request(app)
+            .delete('/api/films/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    title: 'Rogue One',
+                    releaseDate: '2016-12-16',
+                    episodeId: null,
+                    director: 'Gareth Edwards',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
