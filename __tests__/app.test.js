@@ -8,6 +8,15 @@ describe('film routes', () => {
         return setup(pool);
     });
 
+    beforeEach(() => {
+        return request(app).post('/api/films').send({
+            title: 'Rogue One',
+            releaseDate: '2016-12-16',
+            episodeId: null,
+            director: 'Gareth Edwards',
+        });
+    });
+
     it('should get a random star wars film', () => {
         return request(app)
             .get('/api/films/random')
@@ -31,6 +40,20 @@ describe('film routes', () => {
                 episodeId: null,
                 director: 'Gareth Edwards',
             })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 2,
+                    title: 'Rogue One',
+                    releaseDate: '2016-12-16',
+                    episodeId: null,
+                    director: 'Gareth Edwards',
+                });
+            });
+    });
+
+    it('should get a star wars film by id', () => {
+        return request(app)
+            .get('/api/films/1')
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 1,
