@@ -8,12 +8,19 @@ describe('Character routes', () => {
         return setup(pool);
     });
 
+    beforeEach(() => {
+        return request(app).post('/api/characters').send({
+            name: 'Babu Frik',
+            height: '22',
+        });
+    });
+
     it('should get, store and return a random star wars character', () => {
         return request(app)
             .get('/api/characters/random')
             .then((res) => {
                 expect(res.body).toEqual({
-                    id: 1,
+                    id: 2,
                     name: expect.any(String),
                     height: expect.any(String),
                 });
@@ -27,6 +34,18 @@ describe('Character routes', () => {
                 name: 'Babu Frik',
                 height: '22',
             })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 2,
+                    name: 'Babu Frik',
+                    height: '22',
+                });
+            });
+    });
+
+    it('should get character by id', () => {
+        return request(app)
+            .get('/api/characters/1')
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 1,
