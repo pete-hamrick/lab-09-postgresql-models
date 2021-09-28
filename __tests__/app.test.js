@@ -65,6 +65,27 @@ describe('film routes', () => {
             });
     });
 
+    it('should patch a star wars film by id', () => {
+        return request(app)
+            .put('/api/films/1')
+            .send({
+                id: 1,
+                title: 'Rogue One: A Star Wars Story',
+                releaseDate: 'December, 12th 2016',
+                episodeId: null,
+                director: 'Gareth Edwards',
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    title: 'Rogue One: A Star Wars Story',
+                    releaseDate: 'December, 12th 2016',
+                    episodeId: null,
+                    director: 'Gareth Edwards',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
