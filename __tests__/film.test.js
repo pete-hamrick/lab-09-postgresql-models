@@ -16,6 +16,14 @@ describe('film routes', () => {
             director: 'Gareth Edwards',
         });
     });
+    beforeEach(() => {
+        return request(app).post('/api/films').send({
+            title: 'The Last Jedi',
+            releaseDate: '2017-12-15',
+            episodeId: '8',
+            director: 'J. J. Abrams',
+        });
+    });
 
     it('should get a random star wars film', () => {
         return request(app)
@@ -42,7 +50,7 @@ describe('film routes', () => {
             })
             .then((res) => {
                 expect(res.body).toEqual({
-                    id: 2,
+                    id: 3,
                     title: 'Rogue One',
                     releaseDate: '2016-12-16',
                     episodeId: null,
@@ -62,6 +70,29 @@ describe('film routes', () => {
                     episodeId: null,
                     director: 'Gareth Edwards',
                 });
+            });
+    });
+
+    it('should get all films', () => {
+        return request(app)
+            .get('/api/films')
+            .then((res) => {
+                expect(res.body).toEqual([
+                    {
+                        id: 1,
+                        title: 'Rogue One',
+                        releaseDate: '2016-12-16',
+                        episodeId: null,
+                        director: 'Gareth Edwards',
+                    },
+                    {
+                        id: 2,
+                        title: 'The Last Jedi',
+                        releaseDate: '2017-12-15',
+                        episodeId: '8',
+                        director: 'J. J. Abrams',
+                    },
+                ]);
             });
     });
 
