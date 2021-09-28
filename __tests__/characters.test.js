@@ -80,6 +80,22 @@ describe('Character routes', () => {
             });
     });
 
+    it('should let you update a character', () => {
+        return request(app)
+            .put('/api/characters/1')
+            .send({
+                name: 'Babu Frik',
+                height: '25',
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    name: 'Babu Frik',
+                    height: '25',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
