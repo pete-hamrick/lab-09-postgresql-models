@@ -22,6 +22,26 @@ describe('Planet routes', () => {
             });
     });
 
+    it('should let you add your own planet', () => {
+        return request(app)
+            .post('/api/planets')
+            .send({
+                name: 'Earth',
+                climate: 'worsening',
+                terrain: 'mostly water',
+                population: 'billions',
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                    id: 1,
+                    name: 'Earth',
+                    climate: 'worsening',
+                    terrain: 'mostly water',
+                    population: 'billions',
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
