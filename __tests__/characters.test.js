@@ -21,7 +21,7 @@ describe('Character routes', () => {
         });
     });
 
-    it('should get, store and return a random star wars character', () => {
+    xit('should get, store and return a random star wars character', () => {
         return request(app)
             .get('/api/characters/random')
             .then((res) => {

@@ -11,13 +11,11 @@ CREATE TABLE films (
     episode_id TEXT,
     director TEXT NOT NULL
 );
-
 CREATE TABLE characters (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     height TEXT NOT NULL
 );
-
 CREATE TABLE planets (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
@@ -25,7 +23,6 @@ CREATE TABLE planets (
     terrain TEXT NOT NULL,
     population TEXT NOT NULL
 );
-
 CREATE TABLE starships (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
@@ -33,11 +30,10 @@ CREATE TABLE starships (
     starship_class TEXT NOT NULL,
     passengers TEXT NOT NULL
 );
-
-CREATE TABLE vehichles (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    model TEXT NOT NULL,
-    manufacturer TEXT NOT NULL,
-    passengers TEXT NOT NULL
-);
+-- CREATE TABLE vehichles (
+--     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--     name TEXT NOT NULL,
+--     model TEXT NOT NULL,
+--     manufacturer TEXT NOT NULL,
+--     passengers TEXT NOT NULL
+-- );
