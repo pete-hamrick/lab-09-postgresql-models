@@ -25,7 +25,7 @@ describe('film routes', () => {
         });
     });
 
-    xit('should get a random star wars film', () => {
+    it('should get a random star wars film', () => {
         return request(app)
             .get('/api/films/random')
             .then((res) => {
