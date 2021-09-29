@@ -30,10 +30,10 @@ CREATE TABLE starships (
     starship_class TEXT NOT NULL,
     passengers TEXT NOT NULL
 );
--- CREATE TABLE vehichles (
---     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     name TEXT NOT NULL,
---     model TEXT NOT NULL,
---     manufacturer TEXT NOT NULL,
---     passengers TEXT NOT NULL
--- );
+CREATE TABLE vehicles (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    model TEXT NOT NULL,
+    manufacturer TEXT NOT NULL,
+    passengers TEXT NOT NULL
+);
