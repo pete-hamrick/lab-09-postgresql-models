@@ -25,7 +25,7 @@ describe('Starship routes', () => {
         });
     });
 
-    it('should get, store and return a random planet', () => {
+    it('should get, store and return a random starship', () => {
         return request(app)
             .get('/api/starships/random')
             .then((res) => {
@@ -39,7 +39,7 @@ describe('Starship routes', () => {
             });
     });
 
-    it('should let you add your own planet', () => {
+    it('should let you add your own starship', () => {
         return request(app)
             .post('/api/starships')
             .send({
@@ -59,7 +59,7 @@ describe('Starship routes', () => {
             });
     });
 
-    it('should get a planet by id', () => {
+    it('should get a starship by id', () => {
         return request(app)
             .get('/api/starships/2')
             .then((res) => {
@@ -96,7 +96,7 @@ describe('Starship routes', () => {
             });
     });
 
-    it('should update a planet by id', () => {
+    it('should update a starship by id', () => {
         return request(app)
             .put('/api/starships/1')
             .send({
@@ -116,7 +116,7 @@ describe('Starship routes', () => {
             });
     });
 
-    it('should delete a planet by id and return the deleted planet', () => {
+    it('should delete a starship by id and return the deleted starship', () => {
         return request(app)
             .delete('/api/starships/1')
             .then((res) => {

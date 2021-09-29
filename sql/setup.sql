@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS films;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS planets;
--- DROP TABLE IF EXISTS starships;
+DROP TABLE IF EXISTS starships;
 -- DROP TABLE IF EXISTS vehicles;
 
 CREATE TABLE films (
@@ -26,13 +26,13 @@ CREATE TABLE planets (
     population TEXT NOT NULL
 );
 
--- CREATE TABLE starships (
---     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     name TEXT NOT NULL,
---     model TEXT NOT NULL,
---     starship_class TEXT NOT NULL,
---     passengers TEXT NOT NULL
--- );
+CREATE TABLE starships (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    model TEXT NOT NULL,
+    starship_class TEXT NOT NULL,
+    passengers TEXT NOT NULL
+);
 
 -- CREATE TABLE vehichles (
 --     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
