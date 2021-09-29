@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe.skip('Character routes', () => {
+describe('Character routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -21,7 +21,7 @@ describe.skip('Character routes', () => {
         });
     });
 
-    it('should get, store and return a random star wars character', () => {
+    xit('should get, store and return a random star wars character', () => {
         return request(app)
             .get('/api/characters/random')
             .then((res) => {

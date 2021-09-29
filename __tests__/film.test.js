@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe.skip('film routes', () => {
+describe('film routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,7 +25,7 @@ describe.skip('film routes', () => {
         });
     });
 
-    it('should get a random star wars film', () => {
+    xit('should get a random star wars film', () => {
         return request(app)
             .get('/api/films/random')
             .then((res) => {

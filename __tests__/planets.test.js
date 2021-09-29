@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe.skip('Planet routes', () => {
+describe('Planet routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -24,7 +24,7 @@ describe.skip('Planet routes', () => {
         });
     });
 
-    it('should get, store and return a random planet', () => {
+    xit('should get, store and return a random planet', () => {
         return request(app)
             .get('/api/planets/random')
             .then((res) => {

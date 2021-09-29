@@ -25,7 +25,7 @@ describe('Vehicle routes', () => {
         });
     });
 
-    it('should get, store and return a random vehicle', () => {
+    xit('should get, store and return a random vehicle', () => {
         return request(app)
             .get('/api/vehicles/random')
             .then((res) => {
