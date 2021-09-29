@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe.skip('Starship routes', () => {
+describe('Starship routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,7 +25,7 @@ describe.skip('Starship routes', () => {
         });
     });
 
-    xit('should get, store and return a random starship', () => {
+    it('should get, store and return a random starship', () => {
         return request(app)
             .get('/api/starships/random')
             .then((res) => {

@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe('Character routes', () => {
+describe.skip('Character routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
