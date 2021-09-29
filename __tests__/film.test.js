@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe('film routes', () => {
+describe.skip('film routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
