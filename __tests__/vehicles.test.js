@@ -3,7 +3,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe.skip('Vehicle routes', () => {
+describe('Vehicle routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,7 +25,7 @@ describe.skip('Vehicle routes', () => {
         });
     });
 
-    it('should get, store and return a random starship', () => {
+    it('should get, store and return a random vehicle', () => {
         return request(app)
             .get('/api/vehicles/random')
             .then((res) => {
@@ -39,7 +39,7 @@ describe.skip('Vehicle routes', () => {
             });
     });
 
-    it('should let you add your own starship', () => {
+    it('should let you add your own vehicle', () => {
         return request(app)
             .post('/api/vehicles')
             .send({
@@ -59,7 +59,7 @@ describe.skip('Vehicle routes', () => {
             });
     });
 
-    it('should get a starship by id', () => {
+    it('should get a vehicle by id', () => {
         return request(app)
             .get('/api/vehicles/2')
             .then((res) => {
@@ -80,10 +80,10 @@ describe.skip('Vehicle routes', () => {
                 expect(res.body).toEqual([
                     {
                         id: 1,
-                        name: 'Snowspeeder',
-                        model: 't-47 airspeeder',
-                        manufacturer: 'Incom corporation',
-                        passengers: '2',
+                        name: 'Sand Crawler',
+                        model: 'Digger Crawler',
+                        manufacturer: 'Corellia Mining Corporation',
+                        passengers: '30',
                     },
                     {
                         id: 2,
@@ -96,7 +96,7 @@ describe.skip('Vehicle routes', () => {
             });
     });
 
-    it('should update a starship by id', () => {
+    it('should update a vehicle by id', () => {
         return request(app)
             .put('/api/vehicles/1')
             .send({
@@ -116,16 +116,16 @@ describe.skip('Vehicle routes', () => {
             });
     });
 
-    it('should delete a starship by id and return the deleted starship', () => {
+    it('should delete a vehicle by id and return the deleted vehicle', () => {
         return request(app)
             .delete('/api/vehicles/1')
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 1,
-                    name: 'Snowspeeder',
-                    model: 't-47 airspeeder',
-                    manufacturer: 'Incom corporation',
-                    passengers: '2',
+                    name: 'Sand Crawler',
+                    model: 'Digger Crawler',
+                    manufacturer: 'Corellia Mining Corporation',
+                    passengers: '30',
                 });
             });
     });
