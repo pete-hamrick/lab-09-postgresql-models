@@ -25,7 +25,7 @@ describe('Starship routes', () => {
         });
     });
 
-    xit('should get, store and return a random starship', () => {
+    it('should get, store and return a random starship', () => {
         return request(app)
             .get('/api/starships/random')
             .then((res) => {

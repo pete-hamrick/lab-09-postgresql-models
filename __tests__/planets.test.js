@@ -24,7 +24,7 @@ describe('Planet routes', () => {
         });
     });
 
-    xit('should get, store and return a random planet', () => {
+    it('should get, store and return a random planet', () => {
         return request(app)
             .get('/api/planets/random')
             .then((res) => {
