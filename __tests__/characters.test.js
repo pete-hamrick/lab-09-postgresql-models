@@ -2,8 +2,27 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Character routes', () => {
+    const server = setupServer(
+        rest.get('/api/characters/random', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'Darth Vader',
+                    height: 188,
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -110,5 +129,6 @@ describe('Character routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });
