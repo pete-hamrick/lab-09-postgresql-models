@@ -7,7 +7,7 @@ import { rest } from 'msw';
 
 describe('Vehicle routes', () => {
     const server = setupServer(
-        rest.get('/api/vehicles/random', (req, res, ctx) => {
+        rest.get('https://swapi.dev/api/vehicles/:num', (req, res, ctx) => {
             return res(
                 ctx.json({
                     name: 'TIE fighter',
@@ -52,10 +52,10 @@ describe('Vehicle routes', () => {
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 3,
-                    name: expect.any(String),
-                    model: expect.any(String),
-                    manufacturer: expect.any(String),
-                    passengers: expect.any(String),
+                    name: 'TIE fighter',
+                    model: 'Twin Ion Engine/Ln Starfighter',
+                    manufacturer: 'Sienar Fleet Systems',
+                    passengers: '1',
                 });
             });
     });

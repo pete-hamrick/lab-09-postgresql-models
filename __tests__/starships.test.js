@@ -7,12 +7,12 @@ import { rest } from 'msw';
 
 describe('Starship routes', () => {
     const server = setupServer(
-        rest.get('/api/starships/random', (req, res, ctx) => {
+        rest.get('https://swapi.dev/api/starships/:num', (req, res, ctx) => {
             return res(
                 ctx.json({
                     name: 'Millennium Falcon',
                     model: 'YT-1300 light freighter',
-                    starshipClass: 'Light freighter',
+                    starship_class: 'Light freighter',
                     passengers: '6',
                 })
             );
@@ -52,10 +52,10 @@ describe('Starship routes', () => {
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 3,
-                    name: expect.any(String),
-                    model: expect.any(String),
-                    starshipClass: expect.any(String),
-                    passengers: expect.any(String),
+                    name: 'Millennium Falcon',
+                    model: 'YT-1300 light freighter',
+                    starshipClass: 'Light freighter',
+                    passengers: '6',
                 });
             });
     });
