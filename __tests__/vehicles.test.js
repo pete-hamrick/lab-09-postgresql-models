@@ -2,8 +2,29 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Vehicle routes', () => {
+    const server = setupServer(
+        rest.get('https://swapi.dev/api/vehicles/:num', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'TIE fighter',
+                    model: 'Twin Ion Engine/Ln Starfighter',
+                    manufacturer: 'Sienar Fleet Systems',
+                    passengers: '1',
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,16 +46,16 @@ describe('Vehicle routes', () => {
         });
     });
 
-    xit('should get, store and return a random vehicle', () => {
+    it('should get, store and return a random vehicle', () => {
         return request(app)
             .get('/api/vehicles/random')
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 3,
-                    name: expect.any(String),
-                    model: expect.any(String),
-                    manufacturer: expect.any(String),
-                    passengers: expect.any(String),
+                    name: 'TIE fighter',
+                    model: 'Twin Ion Engine/Ln Starfighter',
+                    manufacturer: 'Sienar Fleet Systems',
+                    passengers: '1',
                 });
             });
     });
@@ -132,5 +153,6 @@ describe('Vehicle routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });

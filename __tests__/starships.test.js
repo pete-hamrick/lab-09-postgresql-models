@@ -2,8 +2,29 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Starship routes', () => {
+    const server = setupServer(
+        rest.get('https://swapi.dev/api/starships/:num', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'Millennium Falcon',
+                    model: 'YT-1300 light freighter',
+                    starship_class: 'Light freighter',
+                    passengers: '6',
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,16 +46,16 @@ describe('Starship routes', () => {
         });
     });
 
-    xit('should get, store and return a random starship', () => {
+    it('should get, store and return a random starship', () => {
         return request(app)
             .get('/api/starships/random')
             .then((res) => {
                 expect(res.body).toEqual({
                     id: 3,
-                    name: expect.any(String),
-                    model: expect.any(String),
-                    starshipClass: expect.any(String),
-                    passengers: expect.any(String),
+                    name: 'Millennium Falcon',
+                    model: 'YT-1300 light freighter',
+                    starshipClass: 'Light freighter',
+                    passengers: '6',
                 });
             });
     });
@@ -132,5 +153,6 @@ describe('Starship routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });

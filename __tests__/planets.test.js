@@ -2,8 +2,29 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Planet routes', () => {
+    const server = setupServer(
+        rest.get('/api/planets/random', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'Jedha',
+                    climate: 'cold',
+                    terrain: 'deserts, mesas, magma seas',
+                    population: '11.3 million',
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -24,7 +45,7 @@ describe('Planet routes', () => {
         });
     });
 
-    xit('should get, store and return a random planet', () => {
+    it('should get, store and return a random planet', () => {
         return request(app)
             .get('/api/planets/random')
             .then((res) => {
@@ -131,5 +152,6 @@ describe('Planet routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });

@@ -2,8 +2,29 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('film routes', () => {
+    const server = setupServer(
+        rest.get('/api/films/random', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    title: 'The Last Jedi',
+                    releaseDate: '2017-12-15',
+                    episodeId: '8',
+                    director: 'J. J. Abrams',
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -25,7 +46,7 @@ describe('film routes', () => {
         });
     });
 
-    xit('should get a random star wars film', () => {
+    it('should get a random star wars film', () => {
         return request(app)
             .get('/api/films/random')
             .then((res) => {
@@ -133,5 +154,6 @@ describe('film routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });
