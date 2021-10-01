@@ -2,8 +2,29 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Vehicle routes', () => {
+    const server = setupServer(
+        rest.get('/api/vehicles/random', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'TIE fighter',
+                    model: 'Twin Ion Engine/Ln Starfighter',
+                    manufacturer: 'Sienar Fleet Systems',
+                    passengers: '1',
+                })
+            );
+        })
+    );
+
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
+
     beforeEach(() => {
         return setup(pool);
     });
@@ -132,5 +153,6 @@ describe('Vehicle routes', () => {
 
     afterAll(() => {
         pool.end();
+        server.close();
     });
 });
