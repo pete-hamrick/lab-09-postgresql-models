@@ -2,28 +2,28 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-// import { setupServer } from 'msw/node';
-// import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 describe('Starship routes', () => {
-    // const server = setupServer(
-    //     rest.get('/api/starships/random', (req, res, ctx) => {
-    //         return res(
-    //             ctx.json({
-    //                 name: 'Millennium Falcon',
-    //                 model: 'YT-1300 light freighter',
-    //                 starshipClass: 'Light freighter',
-    //                 passengers: '6',
-    //             })
-    //         );
-    //     })
-    // );
+    const server = setupServer(
+        rest.get('/api/starships/random', (req, res, ctx) => {
+            return res(
+                ctx.json({
+                    name: 'Millennium Falcon',
+                    model: 'YT-1300 light freighter',
+                    starshipClass: 'Light freighter',
+                    passengers: '6',
+                })
+            );
+        })
+    );
 
-    // beforeAll(() => {
-    //     server.listen({
-    //         onUnhandledRequest: 'bypass',
-    //     });
-    // });
+    beforeAll(() => {
+        server.listen({
+            onUnhandledRequest: 'bypass',
+        });
+    });
 
     beforeEach(() => {
         return setup(pool);
@@ -153,6 +153,6 @@ describe('Starship routes', () => {
 
     afterAll(() => {
         pool.end();
-        // server.close();
+        server.close();
     });
 });
